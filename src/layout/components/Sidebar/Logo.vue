@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'ELADMIN-后台管理',
+      title: '拼拼乐电子商务',
       logo: Logo
     }
   }

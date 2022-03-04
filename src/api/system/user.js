@@ -1,6 +1,19 @@
 import request from '@/utils/request'
 import { encrypt } from '@/utils/rsaEncrypt'
 
+export function getAllUser() {
+  const params = {
+    page: 0,
+    size: 9999,
+    enabled: true
+  }
+  return request({
+    url: 'api/users',
+    method: 'get',
+    params
+  })
+}
+
 export function add(data) {
   return request({
     url: 'api/users',
