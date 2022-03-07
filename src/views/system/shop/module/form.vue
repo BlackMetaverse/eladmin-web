@@ -35,6 +35,22 @@
           style="width: 370px;"
         />
       </el-form-item>
+      <el-form-item label="岗位" prop="jobs">
+        <el-select
+          v-model="jobDatas"
+          style="width: 178px"
+          multiple
+          placeholder="请选择"
+          @change="changeJob"
+        >
+          <el-option
+            v-for="item in jobs"
+            :key="item.name"
+            :label="item.name"
+            :value="item.id"
+          />
+        </el-select>
+      </el-form-item>
       <el-form-item
         v-if="form.pid !== 0"
         label="状态"
@@ -72,13 +88,17 @@
 </template>
 
 <script>
-import { form } from '@crud/crud'
+import CRUD, { form } from '@crud/crud'
+import { getAllJob } from '@/api/system/job'
+
+let shopJobs = []
 
 const defaultForm = {
   id: null,
   name: '',
   shopSort: 999,
-  enabled: true
+  enabled: true,
+  jobs: []
 }
 export default {
   mixins: [form(defaultForm)],
@@ -90,6 +110,8 @@ export default {
   },
   data() {
     return {
+      jobDatas: [],
+      jobs: [],
       rules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'blur' }
@@ -97,6 +119,54 @@ export default {
         shopSort: [
           { required: true, message: '请输入序号', trigger: 'blur', type: 'number' }
         ]
+      },
+      [CRUD.HOOK.afterToCU](crud, form) {
+        console.log('afterToCU')
+        this.getJobs()
+        // form.enabled = form.enabled.toString()
+      },
+      // 新增前将多选的值设置为空
+      [CRUD.HOOK.beforeToAdd]() {
+        console.log('beforeToAdd')
+
+        this.jobDatas = []
+      },
+      // 初始化编辑时候的角色与岗位
+      [CRUD.HOOK.beforeToEdit](crud, form) {
+        this.getJobs()
+        this.jobDatas = []
+        shopJobs = []
+        const _this = this
+        form.jobs.forEach(function(job, index) {
+          _this.jobDatas.push(job.id)
+          const data = { id: job.id }
+          shopJobs.push(data)
+        })
+      },
+      // 提交前做的操作
+      [CRUD.HOOK.afterValidateCU](crud) {
+        if (this.jobDatas.length === 0) {
+          this.$message({
+            message: '岗位不能为空',
+            type: 'warning'
+          })
+          return false
+        }
+        crud.form.jobs = shopJobs
+        return true
+      },
+      changeJob(value) {
+        shopJobs = []
+        value.forEach(function(data, index) {
+          const job = { id: data }
+          shopJobs.push(job)
+        })
+      },
+      getJobs() {
+        getAllJob().then(res => {
+          console.log(res.content)
+          this.jobs = res.content
+        }).catch(() => { })
       }
     }
   }

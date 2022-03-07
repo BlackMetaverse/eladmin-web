@@ -14,6 +14,18 @@
           {{ scope.row.shopSort }}
         </template>
       </el-table-column>
+      <el-table-column prop="jobs" label="岗位">
+        <template slot-scope="scope">
+          <el-tag
+            v-for="job in scope.row.jobs"
+            :key="job.name"
+            class="mx-1"
+            type="success"
+          >
+            {{ job.name }}
+          </el-tag>
+        </template>
+      </el-table-column>
       <el-table-column prop="status" label="状态" align="center">
         <template slot-scope="scope">
           <el-switch
