@@ -1,15 +1,9 @@
 import request from '@/utils/request'
 
 export function getAllShop() {
-  const params = {
-    page: 0,
-    size: 9999,
-    enabled: true
-  }
   return request({
-    url: 'api/shop',
-    method: 'get',
-    params
+    url: 'api/shop/queryUserShop',
+    method: 'get'
   })
 }
 

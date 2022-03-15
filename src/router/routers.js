@@ -16,6 +16,11 @@ export const constantRouterMap = [
     hidden: true
   },
   {
+    path: '/orderDashBoard',
+    component: (resolve) => require(['@/views/features/OrderDashBoard'], resolve),
+    hidden: true
+  },
+  {
     path: '/401',
     component: (resolve) => require(['@/views/features/401'], resolve),
     hidden: true

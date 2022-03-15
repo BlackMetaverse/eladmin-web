@@ -1,5 +1,19 @@
 import request from '@/utils/request'
 
+export function queryTopOrderPrice(startTime) {
+  return request({
+    url: 'auth/order/queryTopOrderPrice?startTime=' + startTime,
+    method: 'get'
+  })
+}
+
+export function queryNewOrder(startTime) {
+  return request({
+    url: 'auth/order/queryNewOrder?startTime=' + startTime,
+    method: 'get'
+  })
+}
+
 export function add(data) {
   return request({
     url: 'api/order',

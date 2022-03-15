@@ -147,7 +147,7 @@ export default {
     this.order_status = this.dict.order_status
     const _this = this
     getAllShop().then(res => {
-      _this.shops = res.content
+      _this.shops = res
     }).catch(() => { })
     getAllUser().then(res => {
       _this.users = res.content
@@ -173,7 +173,7 @@ export default {
     },
     getShops() {
       getAllShop().then(res => {
-        this.shops = res.content
+        this.shops = res
         console.log(this.shops)
       }).catch(() => { })
     },
