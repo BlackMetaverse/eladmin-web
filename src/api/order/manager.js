@@ -14,6 +14,13 @@ export function queryNewOrder(startTime) {
   })
 }
 
+export function queryMonthTotalProfit(startTime) {
+  return request({
+    url: 'auth/order/queryMonthTotalProfit?startTime=' + startTime,
+    method: 'get'
+  })
+}
+
 export function add(data) {
   return request({
     url: 'api/order',

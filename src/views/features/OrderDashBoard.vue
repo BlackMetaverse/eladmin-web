@@ -1,15 +1,15 @@
 <template>
-  <el-container style="background-color: #ea4335;">
-    <el-main style="background-color: #ea4335;">
-      <el-row style="padding:4px 4px 0;margin-bottom:8px;background-color: #ea4335;" :gutter="20">
-        <h1 style="font-size: 40px;color: black" class="header">拼拼乐本月利润排行榜</h1>
+  <el-container style="background-color: #0000ff;">
+    <el-main style="background-color: #0000ff;">
+      <el-row style="padding:4px 4px 0;margin-bottom:8px;background-color: #0000ff;" :gutter="20">
+        <h1 style="font-size: 40px;color: white" class="header">拼拼乐本月利润排行榜</h1>
       </el-row>
-      <el-row style="background-color: #ea4335;" :gutter="20">
-        <h2 style="font-size: 32px;color: black" class="header">当月总利润：{{ monthProfit.profit || 0 }} 当月完成比例：{{ monthProfit.profitScale || 0 }}%</h2>
+      <el-row style="background-color: #0000ff;" :gutter="20">
+        <h2 style="font-size: 32px;color: white" class="header">当月总利润：{{ monthProfit.profit || 0 }} 当月完成比例：{{ monthProfit.profitScale || 0 }}%</h2>
       </el-row>
-      <el-row style="padding:16px 16px 0;margin-bottom:32px;background-color: #ea4335;" :gutter="20">
+      <el-row style="padding:16px 16px 0;margin-bottom:32px;background-color: #0000ff;" :gutter="20" :height="fullHeight">
         <el-col :xs="24" :sm="24" :lg="12">
-          <el-table ref="table" class="pt-table" :data="tableData" border align="center" center size="medium" style="font-size: 28px;color: black">
+          <el-table ref="table" class="pt-table" :data="tableData" border align="center" center size="medium" style="font-size: 24px;color: white;background: transparent !important;">
             <el-table-column prop="sort" label="排名" width="100px" />
             <el-table-column prop="nickName" label="姓名" />
             <el-table-column prop="profit" label="当月总利润" />
@@ -17,7 +17,7 @@
           </el-table>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="12">
-          <el-table ref="table" class="pt-table" :data="tableData2" border align="center" center size="medium" style="font-size: 28px;color: black">
+          <el-table ref="table" class="pt-table" :data="tableData2" border align="center" center size="medium" style="font-size: 24px;color: white;background: transparent !important;">
             <el-table-column prop="sort" label="排名" width="100px" />
             <el-table-column prop="nickName" label="姓名" />
             <el-table-column prop="profit" label="当月总利润" />
@@ -30,10 +30,10 @@
       title="新订单"
       :visible.sync="centerDialogVisible"
       width="60%"
-      style="background-color: #ea4335;"
+      style="background-color: #0000ff;"
       center
     >
-      <el-descriptions direction="vertical" :column="4" border style="background-color: #ea4335;font-size: 60px">
+      <el-descriptions direction="vertical" :column="4" border style="background-color: #0000ff;font-size: 60px">
         <el-descriptions-item label="下单时间">{{ dialogValue.orderTime || '' }}</el-descriptions-item>
         <el-descriptions-item label="商品">{{ dialogValue.name || '' }}</el-descriptions-item>
         <el-descriptions-item label="销售顾问"> {{ dialogValue.createBy || '' }}</el-descriptions-item>
@@ -161,17 +161,17 @@ export default {
 //   .pt-table .el-table__inner-wrapper .el-table__body-wrapper table tbody,
 //   .pt-table .el-table__inner-wrapper .el-table__body-wrapper table tbody tr,
 //   .pt-table .el-table__inner-wrapper .el-table__body-wrapper table tbody tr td {
-//     background-color: #ea4335 !important;
+//     background-color: #0000ff !important;
 //     border-bottom: none !important;
-//     // color: #ea4335;
+//     // color: #0000ff;
 //   }
 //   /** 表头背景色 **/
 //   .pt-table .el-table__inner-wrapper .el-table__header-wrapper table thead tr,
 //   .pt-table .el-table__inner-wrapper .el-table__header-wrapper table thead tr th
 //   {
-//     background-color: #ea4335 !important;
+//     background-color: #0000ff !important;
 //     border-bottom: none !important;
-//     // color: #ea4335;
+//     // color: #0000ff;
 //   }
 //   /** 取消伪类带出来的背景色（因为底部多了一条线） **/
 //   .pt-table .el-table__inner-wrapper::before{
@@ -185,8 +185,8 @@ export default {
 //   }
 //   /* 双数行背景颜色 */
 //   .el-table--striped .el-table__body tr.el-table__row--striped td {
-//     background-color: #ea4335;
-//     background-color: #ea4335
+//     background-color: #0000ff;
+//     background-color: #0000ff
 //   }
 //  /* 使表格背景透明 */
 //   .el-table th, .el-table tr {
@@ -203,45 +203,46 @@ export default {
 
   /* 表格表头字体颜色 */
   .el-table thead {
-    color: black;
-    font-weight: 360;
-    // background-color: #ea4335;
+    color: white;
+    font-weight: 280;
+    // background-color: #0000ff;
   }
 
   .el-table th,
   .el-table tr {
-    // background: transparent !important;
-    background: #ea4335 !important;
+    background: transparent !important;
+    // background: #0000ff !important;
   }
   // 2.修改移入到每行的背景色
   .el-table__body tr:hover > td {
-    background: #ea4335 !important;
+    background: transparent !important;
+    // background: #0000ff !important;
   }
   // 3.修改表格边框颜色
   // 右边和下边
   .el-table--border:after,
   .el-table--group:after,
   .el-table:before {
-    background-color: black !important;
+    background-color: white !important;
   }
   // 左边和上边
   .el-table--border,
   .el-table--group {
-    border-color: black !important;
+    border-color: white !important;
   }
   .el-table td,
   .el-table th.is-leaf {
-    border-bottom: 2px solid black !important;
+    border-bottom: 2px solid white !important;
   }
   // 头部的下边框
   .el-table--border th,
   .el-table--border th.gutter:last-of-type {
-    border-bottom: 2px solid black !important;
+    border-bottom: 2px solid white !important;
   }
   // 列表中间的竖线
   .el-table--border td,
   .el-table--border th {
-    border-right: 2px solid black !important;
+    border-right: 2px solid white !important;
   }
 
   .header {
