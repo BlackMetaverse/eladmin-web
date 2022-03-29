@@ -70,14 +70,15 @@
         <el-table-column type="selection" width="55" />
         <!-- <el-table-column prop="orderId" label="ID" /> -->
         <el-table-column prop="shopId" :formatter="getShopName" label="店铺名称" />
-        <el-table-column prop="name" label="商品名称" />
         <el-table-column prop="sourceOrderId" label="原始订单ID" />
         <el-table-column prop="price" label="价格" />
         <el-table-column prop="cost" label="成本" />
+        <el-table-column prop="profit" label="利润" />
         <el-table-column prop="userName" label="下单人" />
+        <el-table-column prop="name" label="备注" />
         <el-table-column prop="orderTime" label="下单时间" />
         <el-table-column prop="orderStatus" :formatter="getOrderStatus" label="订单状态" />
-        <el-table-column prop="updateBy" label="更新者" show-overflow-tooltip="false" />
+        <el-table-column prop="updateBy" label="更新者" />
         <el-table-column prop="updateTime" label="更新时间" :v-show="false" />
         <el-table-column v-if="checkPer(['admin','order:edit','order:del'])" label="操作" width="150px" align="center">
           <template slot-scope="scope">
@@ -150,7 +151,12 @@ export default {
       _this.shops = res
     }).catch(() => { })
     getAllUser().then(res => {
-      _this.users = res.content
+      _this.users = res.content.map((item) => {
+        return {
+          nickName: item.nickName,
+          username: item.username
+        }
+      })
     }).catch(() => { })
   },
   methods: {

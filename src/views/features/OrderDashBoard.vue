@@ -155,7 +155,7 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss" scope>
 
 //   .pt-table,
 //   .pt-table .el-table__inner-wrapper .el-table__body-wrapper table tbody,
